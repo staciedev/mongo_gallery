@@ -1,0 +1,58 @@
+/* line 14, ../sass/_galleries.scss */
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Comfortaa", cursive;
+  line-height: 1.4;
+  letter-spacing: 0.4px;
+  background: #eff2f7;
+}
+
+/* line 23, ../sass/_galleries.scss */
+h1 {
+  font-family: "Kurale", serif;
+}
+
+/* line 27, ../sass/_galleries.scss */
+#header {
+  padding: 0 1%;
+}
+
+/* line 33, ../sass/_galleries.scss */
+.gallery.flex-masonry {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 0.5%;
+}
+/* line 39, ../sass/_galleries.scss */
+.gallery.flex-masonry .gallery-item {
+  background: #fff;
+  max-width: 32.33333%;
+  margin: 0.5%;
+  padding: 1.5% 1.5% 0;
+  box-sizing: border-box;
+  border: 1px solid #e5eaf2;
+}
+@media (max-width: 900px) {
+  /* line 39, ../sass/_galleries.scss */
+  .gallery.flex-masonry .gallery-item {
+    max-width: 49%;
+    padding: 2.5% 2.5% 0;
+  }
+}
+@media (max-width: 550px) {
+  /* line 39, ../sass/_galleries.scss */
+  .gallery.flex-masonry .gallery-item {
+    max-width: 99%;
+  }
+}
+/* line 54, ../sass/_galleries.scss */
+.gallery.flex-masonry .gallery-item img {
+  max-width: 100%;
+}
+/* line 57, ../sass/_galleries.scss */
+.gallery.flex-masonry .gallery-item p {
+  margin-left: 2px;
+  margin-right: 2px;
+}
