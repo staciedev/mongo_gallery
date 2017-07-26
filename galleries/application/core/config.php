@@ -4,7 +4,7 @@ class App
 {
 	
 	// configurations
-	public static $app_url = 'mongodb_project/galleries';
+	public static $app_url = '/mongodb_project/galleries';
 	public static $db_name = 'galleriesdb';
 	
 	// other variables for convenience

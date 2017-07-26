@@ -11,9 +11,11 @@ class ControllerGallery extends Controller {
 	}
 	
 	function action_index()
+	{		
+		echo 'This is gallery controller, index action.';		
+	}
+	function action_list() 
 	{
-		
-		echo 'This is gallery controller, index action.';
 		
 	}
 }

@@ -5,29 +5,27 @@ class Route
 	static function start()
 	{
 		// контроллер и действие по умолчанию
-		$controller_name = 'main';
-		$action_name = 'index';
+		$controller_name = '';
+		$action_name = '';		
 		
-		// adjustments in case the application has extra url parts
-		$uri = trim( $_SERVER['REQUEST_URI'], '/' );		
-		if( strpos( $uri, App::$app_url ) === 0 ) {
-			$uri = substr_replace( $uri, '' , 0 , strlen( App::$app_url ) );
-			$uri = trim( $uri, '/' );
-		}		
+		$router = new AltoRouter();
+		$router->setBasePath( App::$app_url );
 		
-		$routes = explode('/', $uri);		
-
-		// получаем имя контроллера
-		if ( !empty($routes[0]) )
-		{	
-			$controller_name = $routes[0];
-		}
+		// add site routes here				
+		$router->map( 'GET', '/', 													array( 'c' => 'main', 'a' => 'index' ) ); 	# home page
+		$router->map( 'GET', '/art/[i:id]', 								array( 'c' => 'art', 'a' => 'display' ) ); 	# single art page
 		
-		// получаем имя экшена
-		if ( !empty($routes[1]) )
+		$router->map( 'GET', '/admin/galleries', 						array( 'c' => 'gallery', 'a' => 'list' ) ); # admin list galleries
+		$router->map( 'GET', '/admin/gallery/[i:id]/edit', 	array( 'c' => 'gallery', 'a' => 'edit' ) ); # admin edit gallery page
+		// end of site routes		
+		
+		$match = $router->match();
+		
+		if ( !empty( $match['target']['c'] ) && !empty( $match['target']['a'] ) )
 		{
-			$action_name = $routes[1];
-		}		
+			$controller_name = $match['target']['c'];
+			$action_name = $match['target']['a'];
+		}	
 
 		// подцепляем файл с классом модели (файла модели может и не быть)		
 		$model_name = $controller_name;
@@ -39,11 +37,11 @@ class Route
 		}
 
 		// подцепляем файл с классом контроллера
-		$controller_file = strtolower('controller-'.$controller_name).'.php';
-		$controller_path = "application/controllers/".$controller_file;
-		if(file_exists($controller_path))
+		$controller_file = strtolower( 'controller-' . $controller_name ) . '.php';
+		$controller_path = "application/controllers/" . $controller_file;
+		if ( file_exists( $controller_path ) )
 		{
-			include "application/controllers/".$controller_file;
+			include "application/controllers/" . $controller_file;
 		}
 		else
 		{
@@ -52,6 +50,7 @@ class Route
 			но для упрощения сразу сделаем редирект на страницу 404
 			*/
 			Route::ErrorPage404();
+			return;
 		}
 		
 		// создаем контроллер
@@ -59,26 +58,28 @@ class Route
 		$controller = new $controller_class;
 		$action = 'action_'.$action_name;
 		
-		if(method_exists($controller, $action))
-		{
-			// вызываем действие контроллера
-			$controller->$action();
+		if( method_exists( $controller, $action ) )
+		{			
+			$params = $match['params'];			
+			
+			// calling controller action
+			$controller->$action( $params );			
 		}
 		else
 		{
 			// здесь также разумнее было бы кинуть исключение
 			Route::ErrorPage404();
+			return;
 		}
 	
 	}
 	
-	function ErrorPage404()
-	{
-      $host = 'http://'.$_SERVER['HTTP_HOST'].'/';
+	static function ErrorPage404()
+	{      
       header('HTTP/1.1 404 Not Found');
 		  header("Status: 404 Not Found");
-		  header('Location:'.$host.'404');
-			
-			echo 'Not found.';
+		  
+			$view = new View();
+			$view->generate('404.php', 'template.php');			
   }
 }
