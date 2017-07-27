@@ -6,20 +6,18 @@ class Route
 	{
 		// контроллер и действие по умолчанию
 		$controller_name = '';
-		$action_name = '';		
-		
-		$router = new AltoRouter();
-		$router->setBasePath( App::$app_url );
+		$action_name = '';	
 		
 		// add site routes here				
-		$router->map( 'GET', '/', 													array( 'c' => 'main', 'a' => 'index' ) ); 	# home page
-		$router->map( 'GET', '/art/[i:id]', 								array( 'c' => 'art', 'a' => 'display' ) ); 	# single art page
+		App::$router->map( 'GET', '/', 													array( 'c' => 'main', 'a' => 'index' ) ); 	# home page
+		App::$router->map( 'GET', '/art/[i:id]', 								array( 'c' => 'art', 'a' => 'display' ) ); 	# single art page
 		
-		$router->map( 'GET', '/admin/galleries', 						array( 'c' => 'gallery', 'a' => 'list' ) ); # admin list galleries
-		$router->map( 'GET', '/admin/gallery/[i:id]/edit', 	array( 'c' => 'gallery', 'a' => 'edit' ) ); # admin edit gallery page
+		App::$router->map( 'GET', '/admin/galleries', 						array( 'c' => 'gallery', 'a' => 'list' ) ); # admin list galleries
+		App::$router->map( 'GET', '/admin/gallery/new', 					array( 'c' => 'gallery', 'a' => 'add_new' ), 'admin_new_gallery' ); # admin add new gallery
+		App::$router->map( 'GET', '/admin/gallery/[i:id]/edit', 	array( 'c' => 'gallery', 'a' => 'edit' ) ); # admin edit gallery page
 		// end of site routes		
 		
-		$match = $router->match();
+		$match = App::$router->match();
 		
 		if ( !empty( $match['target']['c'] ) && !empty( $match['target']['a'] ) )
 		{

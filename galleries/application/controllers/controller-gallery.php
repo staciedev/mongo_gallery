@@ -24,4 +24,9 @@ class ControllerGallery extends Controller {
 		else
 			$this->view->generate( 'gallery-list.php', 'template-admin.php', $data );			
 	}
+	
+	// add new gallery. Opens an editor page
+	function action_add_new() {
+		$this->view->generate( 'gallery-edit.php', 'template-admin.php' );
+	}
 }

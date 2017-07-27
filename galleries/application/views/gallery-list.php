@@ -6,7 +6,7 @@
     
   <?php else: ?>
     <h1>Галереи</h1>
-    <a class="add-new" href="#">+ Добавить новую</a>
+    <a class="add-new" href="<?php echo App::$router->generate('admin_new_gallery'); ?>">+ Добавить новую</a>
     <div class="admin-table">      
     
     <?php foreach ( $data as $gallery ): ?>

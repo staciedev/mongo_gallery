@@ -32,6 +32,47 @@ a:hover {
   color: #e60049;
 }
 
+/* line 32, ../sass/general/_base.scss */
+input[type=text] {
+  font-family: "Futura", cursive;
+  font-size: 16px;
+  line-height: 2.3;
+  padding: 0 20px;
+  border: 1.5px solid #abbbd5;
+  box-sizing: border-box;
+}
+/* line 40, ../sass/general/_base.scss */
+input[type=text].lg {
+  font-size: 18px;
+  line-height: 2.3;
+  min-width: 50%;
+}
+/* line 46, ../sass/general/_base.scss */
+input[type=text]:focus, input[type=text]:active {
+  outline: 2px solid #FF0051;
+}
+
+/* line 55, ../sass/general/_base.scss */
+.btn-std {
+  font-family: "Futura", cursive;
+  font-size: 16px;
+  line-height: 2.3;
+  border: 1.5px solid transparent;
+  padding: 0 10px;
+  background: #ff578c;
+  color: #fff;
+}
+/* line 64, ../sass/general/_base.scss */
+.btn-std:active, .btn-std:focus {
+  background: #ff3374;
+  outline: none;
+}
+/* line 69, ../sass/general/_base.scss */
+.btn-std.lg {
+  font-size: 18px;
+  line-height: 2.3;
+}
+
 /* line 1, ../sass/public/_header.scss */
 #header {
   padding: 0 1%;

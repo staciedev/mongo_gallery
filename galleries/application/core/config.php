@@ -7,6 +7,7 @@ class App
 	public static $app_url = '/mongodb_project/galleries';
 	public static $db_name = 'galleriesdb';
 	public static $db = null;
+	public static $router = null;
 	
 	// other variables for convenience
 	public static $complete_url;
@@ -16,6 +17,9 @@ class App
 		$protocol = explode( '/', $protocol );
 		$protocol = $protocol[0];
 		self::$complete_url = $protocol.'://'.$_SERVER['HTTP_HOST'].'/'.self::$app_url;
+		
+		self::$router = new AltoRouter();
+		self::$router->setBasePath( self::$app_url );
 		
 		self::db_connect();
 	}
