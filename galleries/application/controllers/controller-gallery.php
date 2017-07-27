@@ -2,11 +2,9 @@
 
 class ControllerGallery extends Controller {
 	
-	// public $model;
-	// public $view;
-	
 	function __construct()
 	{
+		$this->model = new ModelGallery();
 		$this->view = new View();
 	}
 	
@@ -14,8 +12,11 @@ class ControllerGallery extends Controller {
 	{		
 		echo 'This is gallery controller, index action.';		
 	}
+	
+	// lists all galleries
 	function action_list() 
 	{
-		
+		$data = $this->model->get_data();		
+		$this->view->generate( 'gallery-list.php', 'template-admin.php', $data );
 	}
 }

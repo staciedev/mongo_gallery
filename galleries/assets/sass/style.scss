@@ -1,1 +1,6 @@
-@import "galleries";
+@import "general/variables";
+@import "general/base";
+
+@import "public/header";
+@import "public/footer";
+@import "public/galleries";

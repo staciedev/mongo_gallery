@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
   <head>
     <title>Galleries</title>
@@ -8,7 +7,7 @@
   </head>
   <body>
     <header id="header">
-      <h1>Galleries</h1>      
+      <h1 class="site-logo">Galleries</h1>      
     </header>
     <main>
       <?php include $content_view; ?>

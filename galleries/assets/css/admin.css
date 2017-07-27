@@ -1,0 +1,91 @@
+@font-face {
+  font-family: 'Futura';
+  font-weight: 300;
+  src: url("../fonts/futurapt-light.woff") format("woff");
+}
+@font-face {
+  font-family: 'Futura';
+  font-weight: 600;
+  src: url("../fonts/futurapt-bold.woff") format("woff");
+}
+/* line 12, ../sass/general/_base.scss */
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Futura", cursive;
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: 0.4px;
+  background: #eff2f7;
+}
+
+/* line 21, ../sass/general/_base.scss */
+a {
+  text-decoration: none;
+}
+/* line 24, ../sass/general/_base.scss */
+a:not(.no-color) {
+  color: #FF0051;
+}
+/* line 27, ../sass/general/_base.scss */
+a:hover {
+  color: #e60049;
+}
+
+/* line 1, ../sass/admin/_header.scss */
+#header {
+  padding: 10px 0.5%;
+  border-bottom: 1px solid #e5eaf2;
+  background: #fff;
+}
+/* line 6, ../sass/admin/_header.scss */
+#header .site-logo {
+  margin: 0;
+  font-family: "Kurale", serif;
+  font-size: 24px;
+}
+/* line 11, ../sass/admin/_header.scss */
+#header .subtitle {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* line 1, ../sass/admin/_table.scss */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* line 6, ../sass/admin/_table.scss */
+.add-new {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+/* line 13, ../sass/admin/_table.scss */
+.admin-table .table-row {
+  background: #fff;
+  border: 1px solid #e5eaf2;
+  margin-bottom: -1px;
+  padding: 15px 30px 15px 20px;
+  display: flex;
+}
+/* line 20, ../sass/admin/_table.scss */
+.admin-table .table-row .cell {
+  flex-basis: 0;
+}
+/* line 24, ../sass/admin/_table.scss */
+.admin-table .table-row .cell.edit, .admin-table .table-row .cell.delete, .admin-table .table-row .cell.view {
+  flex-grow: 1;
+  text-align: right;
+}
+/* line 28, ../sass/admin/_table.scss */
+.admin-table .table-row .cell.title {
+  flex-grow: 2;
+  font-size: 110%;
+}
+/* line 32, ../sass/admin/_table.scss */
+.admin-table .table-row .cell .fa {
+  font-size: 14px;
+  margin-right: 6px;
+}

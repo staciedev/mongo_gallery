@@ -1,0 +1,15 @@
+#header { 
+  padding: 10px $masonry__item_gap;
+  border-bottom: 1px solid darken($color__light_grey, 3%);
+  background: #fff;
+  
+  .site-logo {
+    margin: 0;
+    font-family: $font__headings_main;
+    font-size: 24px;
+  }
+  .subtitle {
+    margin: 0;
+    font-size: 14px;
+  }
+}

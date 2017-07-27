@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'Futura';
+  font-weight: 300;
+  src:  url('../fonts/futurapt-light.woff') format('woff');
+}
+@font-face {
+  font-family: 'Futura';
+  font-weight: 600;
+  src:  url('../fonts/futurapt-bold.woff') format('woff');
+}     
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: $font__text_main;
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: 0.4px;
+  background: $color__light_grey;
+}
+a {
+  text-decoration: none;
+  
+  &:not(.no-color) {
+    color: $color__bright;
+  }  
+  &:hover {
+    color: darken($color__bright, 5%);
+  }
+}
