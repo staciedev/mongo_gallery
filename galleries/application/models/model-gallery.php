@@ -10,7 +10,13 @@ class ModelGallery extends Model {
 	function get_data()
 	{		
 		// collection: galleries
-		$data = App::$db->galleries->find();
+		try {
+			$data = App::$db->galleries->find();
+		}
+		catch ( Exception $e ) {    	
+			$data['error'] = $e->getMessage();
+		}
+		
 		return $data;		
 	}
 	

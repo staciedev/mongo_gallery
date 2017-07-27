@@ -24,6 +24,6 @@ class App
 	static function db_connect() {
 		$client = new MongoDB\Client( "mongodb://localhost:27017" );
 		$db_name = self::$db_name;
-		self::$db = $client->$db_name;
+		self::$db = $client->$db_name;		
 	}
 }

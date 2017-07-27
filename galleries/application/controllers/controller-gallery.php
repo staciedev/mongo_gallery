@@ -15,8 +15,13 @@ class ControllerGallery extends Controller {
 	
 	// lists all galleries
 	function action_list() 
-	{
-		$data = $this->model->get_data();		
-		$this->view->generate( 'gallery-list.php', 'template-admin.php', $data );
+	{		
+		$data = $this->model->get_data();
+				
+		if( is_array( $data ) && !empty( $data['error'] ) )
+			$this->view->generate( 'error.php', 'template-admin.php', $data );
+			
+		else
+			$this->view->generate( 'gallery-list.php', 'template-admin.php', $data );			
 	}
 }
