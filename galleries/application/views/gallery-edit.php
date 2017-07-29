@@ -7,8 +7,13 @@
     <input type="submit" class="btn-std lg" value="Coхранить">
   </section>
   
-  <section class="arts dropzone">
-    <p>Нажмите или перетащите сюда файл</p>    
+  <section class="arts droparea">
+    <div class="invite">
+      <p>Нажмите или перетащите сюда файл</p>
+      <input type="file" name="img" multiple> 
+    </div>
+    <div class="arts admin-table">      
+    </div>       
   </section>    
 </form>    
   

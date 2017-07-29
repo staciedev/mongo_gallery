@@ -131,15 +131,19 @@ input[type=text]:focus, input[type=text]:active {
   margin-right: 6px;
 }
 
-/* line 1, ../sass/admin/_dropzone.scss */
-.dropzone {
+/* line 2, ../sass/admin/_dropzone.scss */
+.droparea .invite {
   background: #fff;
   border: 1.5px dashed #93a7c9;
-  margin-top: 20px;
+  margin: 20px 0 20px 0;
 }
 /* line 6, ../sass/admin/_dropzone.scss */
-.dropzone p {
+.droparea .invite p {
   text-align: center;
+}
+/* line 9, ../sass/admin/_dropzone.scss */
+.droparea .invite input {
+  visibility: hidden;
 }
 
 /* line 2, ../sass/admin/_edit-gallery.scss */
