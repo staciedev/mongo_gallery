@@ -2,3 +2,4 @@ vendor
 content
 .sass-cache
 galleries/assets/node_modules
+galleries/debug.log

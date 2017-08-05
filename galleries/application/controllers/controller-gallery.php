@@ -6,12 +6,7 @@ class ControllerGallery extends Controller {
 	{
 		$this->model = new ModelGallery();
 		$this->view = new View();
-	}
-	
-	function action_index()
-	{		
-		echo 'This is gallery controller, index action.';		
-	}
+	}	
 	
 	// lists all galleries
 	function action_list() 
@@ -25,8 +20,20 @@ class ControllerGallery extends Controller {
 			$this->view->generate( 'gallery-list.php', 'template-admin.php', $data );			
 	}
 	
-	// add new gallery. Opens an editor page
+	// Opens an editor page
 	function action_add_new() {
 		$this->view->generate( 'gallery-edit.php', 'template-admin.php' );
+	}
+	
+	// saves a gallery (used with AJAX)
+	function action_ajax_save() {		
+		
+		$id = ( !empty( $_POST['gllry-id'] ) ) ? $_POST['gllry-id'] : null;
+		$name = ( !empty( $_POST['gllry-title'] ) ) ? $_POST['gllry-title'] : null;
+		$files = ( !empty( $_FILES['gllry-arts'] ) ) ? $_FILES['gllry-arts'] : null;
+		
+		$result = $this->model->save( $id, $name, $files );
+		
+		echo json_encode( $result );
 	}
 }

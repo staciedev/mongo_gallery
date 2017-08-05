@@ -12,7 +12,9 @@
     <?php foreach ( $data as $gallery ): ?>
       
       <div class="table-row">
-        <span class="cell title"><?php echo $gallery['name']; ?></span>   
+        <span class="cell title">
+          <?php echo (!empty($gallery['name']) ) ? $gallery['name'] : 'Без названия'; ?>
+        </span>   
         <a class="cell edit" href="#"><span class="fa fa-pencil"></span>Редактировать</a>
         <a class="cell delete" href="#"><span class="fa fa-trash-o"></span>Удалить</a>        
       </div>
