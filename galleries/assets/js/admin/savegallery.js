@@ -62,8 +62,7 @@ class GllryForm {
   }
   
   // only sends arts and gallery ID
-  sendArts( iteration ) {    
-    // TODO make if recursive
+  sendArts( iteration ) {        
     
     let data = new FormData();
     data.set( 'gllry-id', this.inputVal( 'gllry-id' ) ); 
@@ -94,4 +93,4 @@ class GllryForm {
 }
 
 var gllryForm = document.getElementById( 'gllry-form' );
-new GllryForm( gllryForm );
+if( gllryForm ) new GllryForm( gllryForm );

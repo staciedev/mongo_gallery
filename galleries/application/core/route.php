@@ -14,10 +14,11 @@ class Route
 		
 		App::$router->map( 'GET', '/admin/galleries', 						array( 'c' => 'gallery', 'a' => 'list' ) ); # admin list galleries
 		App::$router->map( 'GET', '/admin/gallery/new', 					array( 'c' => 'gallery', 'a' => 'add_new' ), 'admin_new_gallery' ); # admin add new gallery
-		App::$router->map( 'GET', '/admin/gallery/[i:id]/edit', 	array( 'c' => 'gallery', 'a' => 'edit' ) ); # admin edit gallery page
+		App::$router->map( 'GET', '/admin/gallery/[i:id]/edit', 	array( 'c' => 'gallery', 'a' => 'edit' ) ); # admin edit gallery page		
 		
 		App::$router->map( 'POST', '/ajax/gallery/save', 					array( 'c' => 'gallery', 'a' => 'ajax_save' ), 'ajax_save_gallery' ); # save gallery with ajax
-		App::$router->map( 'POST', '/ajax/art/save', 							array( 'c' => 'art', 'a' => 'ajax_save' ), 'ajax_save_art' ); # save gallery with ajax
+		App::$router->map( 'POST', '/ajax/art/save', 							array( 'c' => 'art', 'a' => 'ajax_save' ), 'ajax_save_art' ); # save art with ajax
+		App::$router->map( 'DELETE', '/ajax/gallery/[i:id]', 			array( 'c' => 'gallery', 'a' => 'ajax_delete' ), 'ajax_delete_gallery' ); # delete gallery with ajax
 		// end of site routes		
 		
 		$match = App::$router->match();

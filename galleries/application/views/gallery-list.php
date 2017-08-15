@@ -15,8 +15,16 @@
         <span class="cell title">
           <?php echo (!empty($gallery['name']) ) ? $gallery['name'] : 'Без названия'; ?>
         </span>   
-        <a class="cell edit" href="#"><span class="fa fa-pencil"></span>Редактировать</a>
-        <a class="cell delete" href="#"><span class="fa fa-trash-o"></span>Удалить</a>        
+        <div class="cell edit">
+          <a href="#">
+            <span class="fa fa-pencil"></span>Редактировать
+          </a>
+        </div>
+        <div class="cell delete">
+          <a class="delete-link" href="<?php echo App::$router->generate( 'ajax_delete_gallery', [ 'id' => $gallery['_id'] ] ); ?>">
+            <span class="fa fa-trash-o"></span>Удалить
+          </a>
+        </div>        
       </div>
       
     <?php endforeach; ?>
