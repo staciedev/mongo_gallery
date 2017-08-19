@@ -36,4 +36,16 @@ class ControllerGallery extends Controller {
 		
 		echo json_encode( $result );
 	}
+	
+	// deletes a gallery (used with AJAX)
+	function action_ajax_delete( $params ) {
+		
+		if( !empty( $params['id'] ) )
+			$result = $this->model->delete_one( $params['id'] );
+		else
+			$result = [ 'success' => false ];
+			
+		echo json_encode( $result );
+			
+	}
 }

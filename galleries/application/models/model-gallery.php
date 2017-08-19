@@ -55,8 +55,8 @@ class ModelGallery extends Model {
 		
 		if( !empty( $files ) ) {
 			require_once('model-art.php');
-			$modelArt = new ModelArt();
-			$arts = $modelArt->bulk_save( $files, $id );
+			$model_art = new ModelArt();
+			$arts = $model_art->bulk_save( $files, $id );
 			
 			if( gettype( $arts ) == 'integer' ) {
 				switch ($arts) {
@@ -111,7 +111,32 @@ class ModelGallery extends Model {
 		return $result;
 	}
 	
+	/**
+	* delete one gallery
+	*/
+	function delete_one( $id = false ) {
+		$result = [ 'success' => false ];		
+		
+		$collection_name = $this->collection_name;
+		
+		try {
+			$delete_result = App::$db->$collection_name->deleteOne( [ '_id' => $id ] );
+		}
+		catch( Exception $e ) {
+			$result['message'] = $e->getMessage();
+			return $result;
+		}
+		
+		if( $delete_result->getDeletedCount() == 1 )
+			$result['success'] = true;
+		
+		return $result;
+		
+	}
+	
 }
+
+
 
 // Note: mongodb request to get multiple galleries with their arts 
 /* 

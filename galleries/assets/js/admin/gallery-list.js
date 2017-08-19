@@ -1,76 +1,132 @@
 /*jshint esversion: 6 */
-class AdminTable {
+
+class AdminRow {
   constructor( el ) {
     this.el = el;
-    this.rows = this.el.getElementsByClassName('table-row');
-    this.dialogs = [];
+    this.timeout = 1000;
     
-    for (var i = 0; i < this.rows.length; i++) {
-      let delLink = this.rows[i].getElementsByClassName('delete-link');
-      if( delLink.length > 0 ) delLink = delLink[0];
+    this.el.addEventListener( 'click', (e) => this.clickRouter(e) );       
+  }
+  
+  clickRouter( e ) {
+    e.preventDefault();
+    var className = " " + e.target.className + " ";
+    
+    if( className.includes( ' delete-link ' ) ) 
+      this.openDeleteDialog( e.target.parentNode, e.target.getAttribute( 'href' ) ); 
+    
+    if( className.includes( ' btn-cancel ' ) )
+      this.closeDeleteDialog();
       
-      this.dialogs.push( new DialogDelete( delLink ) );
+    if( className.includes( ' btn-delete ' ) )
+      this.send( 'DELETE', e.target.getAttribute( 'data-url' ) );        
+  }
+  
+  
+  openDeleteDialog( container, url ) { 
+    
+    if( !container || !url ) return;
+    
+    var dialog =  
+      '<div class ="dialog-delete">' +       
+      '<button class="btn-delete btn-std outlined" data-url="' + url + '">Удалить</button>' +
+      '<button class="btn-cancel btn-std bright">Отмена</button>' +
+      '</div>'
+    ;     
+    
+    this.htmlBackup = container.innerHTML;
+    
+    container.innerHTML = dialog;  
+  }
+  
+  
+  closeDeleteDialog( withMessage ) {
+    
+    var dialog = this.el.getElementsByClassName('dialog-delete');
+    if( dialog.length < 1 ) return;
+    
+    dialog = dialog[0];
+    var parent = dialog.parentNode;       
+    
+    if( typeof( withMessage ) == 'string' ) { // show message first
+      parent.innerHTML = '<p class ="cell-msg sm">' + withMessage + '</p>';
+      setTimeout( 
+        () => parent.innerHTML = this.htmlBackup,
+        this.timeout
+      );   
+    } 
+      
+    else {
+      parent.innerHTML = this.htmlBackup;
     }
     
-    document.addEventListener( 'click', (e) => this.closeDialogs(e) );
-    
   }
   
-  showDeleteDialog( e ) {
+  send( method, url ) {
     
-         // TODO
+    let xhr = new XMLHttpRequest();
+    xhr.open( method, url, true );    
     
+    var self = this; 
+    
+    xhr.onreadystatechange = function() {
+      
+      if ( xhr.readyState == XMLHttpRequest.DONE ) {
+        var response = JSON.parse( xhr.response );     
+        // console.log( response );
+        
+        if( response.success ) {
+          self.closeDeleteDialog( 'Успешно' );
+          setTimeout(
+            () => self.el.parentNode.removeChild( self.el ),
+            self.timeout
+          );          
+        }
+        else {
+          self.closeDeleteDialog( 'Ошибка' );
+        }   
+           
+      }
+    };
+    
+    xhr.send();  
   }
   
-  
-  
-  delete() {
-     // TODO
+}
+
+
+class AdminTable {
+  constructor( el ) {
+    
+    this.el = el;    
+    
+    let rows = this.el.getElementsByClassName('table-row');
+    this.rows = [];
+    for ( var i = 0; i < rows.length; i++ ) {
+      this.rows.push( new AdminRow( rows[i] ) );
+    }
+    
+    document.addEventListener( 'click', (e) => this.closeDialogs(e) );    
   }
   
-  
+  closeDialogs( e ) {
+    
+    var rowClicked = null;
+    
+    for ( let i = 0; i < e.path.length; i++ ) {
+      var className = " " + e.path[i].className + " ";
+      if( className.includes( ' table-row ' ) ) {
+        rowClicked = e.path[i]; 
+        break;
+      }      
+    }
+    
+    for ( let i = 0; i < this.rows.length; i++ ) {
+      if( rowClicked !== this.rows[i].el )
+        this.rows[i].closeDeleteDialog();
+    }    
+  }  
 }
 
 var adminTable = document.getElementsByClassName( 'admin-table' );
-for (var i = 0; i < adminTable.length; i++) {
-  new AdminTable( adminTable[i] );
-}
-
-// TODO
-class DialogDelete {
-  
-  constructor( el ) {
-    this.switch = el;
-    this.container = el.parentNode;
-    this.class = 'dialog-delete';    
-    
-    this.switch.addEventListener( 'click', (e) => this.open(e) );
-    
-    document.addEventListener( 'click', (e) => this.close(e) );
-  }
-  
-  open() {
-    e.preventDefault();
-    console.log( e.target ); 
-     
-    
-    var dialog =  
-      '<div class ="dialog-delete">' +   
-      '<p class="">Удалить?</p>' +
-      '<button class="btn-delete">Удалить</button>' +
-      '<button class="btn-cancel">Отмена</button>' +
-      '</div>'
-    ;    
-    this.htmlBackup = parent.innerHTML;
-    
-    this.container.innerHTML = dialog;  
-    
-  }
-  
-  close(e) {
-    this.container.innerHTML = this.htmlBackup;
-  }
-  
-}
-
-
+if( adminTable.length > 0 ) adminTable = new AdminTable( adminTable[0] );

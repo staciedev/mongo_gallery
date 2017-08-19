@@ -4,7 +4,7 @@
   
   <section class="gllry-title">    
     <input class="lg" type="text" id="gllry-title" name="gllry-title" value="" placeholder="Название галереи">
-    <input type="submit" class="btn-std lg" value="Coхранить">
+    <input type="submit" class="btn-std lg bright" value="Coхранить">
   </section>
   
   <section class="arts droparea">

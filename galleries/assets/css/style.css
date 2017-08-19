@@ -32,7 +32,16 @@ a:hover {
   color: #e60049;
 }
 
-/* line 32, ../sass/general/_base.scss */
+/* line 31, ../sass/general/_base.scss */
+p {
+  margin: 0;
+}
+/* line 33, ../sass/general/_base.scss */
+p.sm {
+  font-size: 16px;
+}
+
+/* line 38, ../sass/general/_base.scss */
 input[type=text] {
   font-family: "Futura", cursive;
   font-size: 16px;
@@ -41,36 +50,47 @@ input[type=text] {
   border: 1.5px solid #abbbd5;
   box-sizing: border-box;
 }
-/* line 40, ../sass/general/_base.scss */
+/* line 46, ../sass/general/_base.scss */
 input[type=text].lg {
   font-size: 18px;
   line-height: 2.3;
   min-width: 50%;
 }
-/* line 46, ../sass/general/_base.scss */
+/* line 52, ../sass/general/_base.scss */
 input[type=text]:focus, input[type=text]:active {
   outline: 2px solid #FF0051;
 }
 
-/* line 55, ../sass/general/_base.scss */
+/* line 61, ../sass/general/_base.scss */
 .btn-std {
   font-family: "Futura", cursive;
   font-size: 16px;
   line-height: 2.3;
   border: 1.5px solid transparent;
   padding: 0 10px;
-  background: #ff578c;
-  color: #fff;
-}
-/* line 64, ../sass/general/_base.scss */
-.btn-std:active, .btn-std:focus {
-  background: #ff3374;
-  outline: none;
+  background: #f6f8fa;
 }
 /* line 69, ../sass/general/_base.scss */
+.btn-std:active, .btn-std:focus {
+  outline: none;
+}
+/* line 73, ../sass/general/_base.scss */
 .btn-std.lg {
   font-size: 18px;
   line-height: 2.3;
+}
+/* line 79, ../sass/general/_base.scss */
+.btn-std.bright {
+  background: #ff578c;
+  color: #fff;
+}
+/* line 83, ../sass/general/_base.scss */
+.btn-std.bright:active, .btn-std.bright:focus, .btn-std.bright:hover {
+  background: #ff3374;
+}
+/* line 88, ../sass/general/_base.scss */
+.btn-std.outlined {
+  border-color: #ff578c;
 }
 
 /* line 1, ../sass/public/_header.scss */
